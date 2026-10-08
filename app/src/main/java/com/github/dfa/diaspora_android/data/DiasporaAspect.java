@@ -19,6 +19,7 @@
 package com.github.dfa.diaspora_android.data;
 
 import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 
 import org.json.JSONException;
@@ -64,7 +65,9 @@ public class DiasporaAspect {
             j.put("id", id);
             j.put("name", name);
             j.put("selected", selected);
-        } catch (JSONException e) {/*Nothing*/}
+        } catch (JSONException e) {
+            AppLog.e(this, "Failed to serialize aspect " + id + " to JSON: " + e.getMessage());
+        }
         return j.toString();
     }
 
