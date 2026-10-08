@@ -29,6 +29,7 @@ import android.webkit.URLUtil;
 import android.webkit.WebView;
 
 import com.github.dfa.diaspora_android.activity.MainActivity;
+import com.github.dfa.diaspora_android.util.AppLog;
 
 /**
  * Created by Gregor Santner on 07.08.16.
@@ -39,7 +40,9 @@ public class WebHelper {
     public static boolean isOnline(Context context) {
         ConnectivityManager cnm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = cnm.getActiveNetworkInfo();
-        return ni != null && ni.isConnectedOrConnecting();
+        boolean online = ni != null && ni.isConnectedOrConnecting();
+        AppLog.d(context, "Network online: " + online);
+        return online;
     }
 
     public static String replaceUrlWithMarkdown(String url) {
